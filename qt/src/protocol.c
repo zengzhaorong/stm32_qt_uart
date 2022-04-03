@@ -108,7 +108,7 @@ int proto_packet_detect(struct ringbuffer *ringbuf, proto_detect_t *detect, uint
 	if(ringbuf==NULL || proto_data==NULL || proto_len==NULL || size<PROTO_PACK_MIN_LEN)
 		return -1;
 
-	tmp_protoLen = *proto_len;
+	tmp_protoLen = detect->len;
 
 	/* get and check protocol head */
 	if(!detect->head)
@@ -213,7 +213,7 @@ int proto_packet_detect(struct ringbuffer *ringbuf, proto_detect_t *detect, uint
 		}
 	}
 
-	*proto_len = tmp_protoLen;
+	detect->len = tmp_protoLen;
 
 	return -1;
 }
